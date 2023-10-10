@@ -1,0 +1,10 @@
+@import '~antd/dist/antd.css';
+@import './base/normalize';
+@import './base/typography';
+@import './base/themes';
+@import './base/base';
+@import './base/responsive';
+
+:root {
+  @include theme-light;
+}
