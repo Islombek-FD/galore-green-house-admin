@@ -44,9 +44,11 @@ export interface IMinFile {
 }
 
 export interface IMultiName {
-  uz: string;
   oz: string;
+  uz: string;
+  ar: string;
   ru: string;
+  en: string;
 }
 
 export interface IIdAndMultiName {

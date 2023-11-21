@@ -1,5 +1,7 @@
 export const objectMultiLangField = {
-  uz: '',
   oz: '',
-  ru: ''
+  uz: '',
+  ar: '',
+  ru: '',
+  en: '',
 };

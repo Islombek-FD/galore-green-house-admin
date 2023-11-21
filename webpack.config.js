@@ -18,10 +18,11 @@ module.exports = env => {
       path: path.resolve(__dirname, 'dist'),
       filename: 'bundle.js',
       publicPath: '/',
+      assetModuleFilename: 'assets/[name][hash][ext]',
     },
     devServer: {
       static: path.resolve(__dirname, './dist'),
-      port: 9998,
+      port: 7777,
       historyApiFallback: true,
     },
     performance: {
@@ -66,16 +67,8 @@ module.exports = env => {
           use: ['style-loader', 'css-loader'],
         },
         {
-          test: /\.(jp?g|png|woff|woff2|eot|ttf|svg|jpeg)$/,
-          use: [
-            {
-              loader: 'file-loader',
-              options: {
-                name: '[name].[hash].[ext]',
-                outputPath: 'images',
-              },
-            },
-          ],
+          test: /\.(jpg|jpeg|png|svg|gif|woff|woff2|eot|ttf)$/,
+          type: 'asset/resource',
         },
       ],
     },

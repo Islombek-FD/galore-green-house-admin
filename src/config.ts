@@ -5,7 +5,6 @@ const config = {
     env: ENV.REACT_APP_ENV,
     version: ENV.REACT_APP_VERSION,
     isDev: ENV.REACT_APP_ENV !== 'production',
-    publicUrl: ENV.PUBLIC_URL,
     editorApiKey: ENV.EDITOR_API_KEY,
   },
   api: {
@@ -14,8 +13,8 @@ const config = {
   },
   language: {
     key: 'language',
-    initial: 'uz',
-    list: ['uz', 'oz', 'ru'],
+    initial: 'oz',
+    list: ['oz', 'uz', 'ar', 'ru', 'en'],
   },
   list: {
     perPage: 10,

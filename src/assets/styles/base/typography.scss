@@ -1,1 +1,34 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap');
+@font-face {
+  font-family: 'SF Pro Display';
+  font-style: normal;
+  font-weight: 800;
+  src: url('@/assets/fonts/SF-Pro-Display-Black.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  font-style: normal;
+  font-weight: 700;
+  src: url('@/assets/fonts/SF-Pro-Display-Bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  font-style: normal;
+  font-weight: 600;
+  src: url('@/assets/fonts/SF-Pro-Display-Semibold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  font-style: normal;
+  font-weight: 500;
+  src: url('@/assets/fonts/SF-Pro-Display-Medium.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  font-style: normal;
+  font-weight: 400;
+  src: url('@/assets/fonts/SF-Pro-Display-Regular.woff') format('woff');
+}

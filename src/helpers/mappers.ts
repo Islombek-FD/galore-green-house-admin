@@ -64,9 +64,11 @@ export const getFileSize = (bytes, decimals = 2) => {
 };
 
 export const getMultiName = (item?): IMultiName => ({
-  uz: get(item, 'uz') || '',
   oz: get(item, 'oz') || '',
+  uz: get(item, 'uz') || '',
+  ar: get(item, 'ar') || '',
   ru: get(item, 'ru') || '',
+  en: get(item, 'en') || '',
 });
 
 export const getIdAndMultiName = (item?): IIdAndMultiName => ({
