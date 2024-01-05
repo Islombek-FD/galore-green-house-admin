@@ -1,12 +1,14 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useField } from 'formik';
+import get from 'lodash/get';
 
 import config from '@/config';
 
 import { http } from '@/services';
 
 import EditorBase, { IProps as EditorProps } from '@/components/Editor';
-import { getFile } from '@/helpers/mappers';
+import { BlobInfo, UploadFailureOptions } from '@/components/Editor/types';
 
 interface IProps extends Omit<EditorProps, 'id' | 'apiKey' | 'name' | 'onChange' | 'value'> {
   name: string;
@@ -18,6 +20,8 @@ interface IProps extends Omit<EditorProps, 'id' | 'apiKey' | 'name' | 'onChange'
 }
 
 const Editor: React.FC<IProps> = ({ name, validation, ...props }) => {
+  const { t } = useTranslation();
+
   const [field, meta, helper] = useField({
     name,
     validate: (value): string => {
@@ -26,15 +30,15 @@ const Editor: React.FC<IProps> = ({ name, validation, ...props }) => {
       }
 
       if (validation.required && !value) {
-        return 'validation_required';
+        return t('validation_required');
       }
 
       if (validation.min && validation.min > (value || '').length) {
-        return `validation_min_length_${validation.min}`;
+        return t('validation_min_length', { min: validation.min });
       }
 
       if (validation.max && validation.max < (value || '').length) {
-        return `validation_max_length_${validation.max}`;
+        return t('validation_max_length', { max: validation.max });
       }
 
       return '';
@@ -43,19 +47,24 @@ const Editor: React.FC<IProps> = ({ name, validation, ...props }) => {
 
   const hasError = !!(meta.error && meta.touched);
 
-  const imagesUploadHandler = (blobInfo, onSuccess, onError, progress) => {
+  const imagesUploadHandler = (
+    blobInfo: BlobInfo,
+    onSuccess: (url: string) => void,
+    onError: (err: string, options?: UploadFailureOptions) => void,
+    progress?: (percent: number) => void,
+  ) => {
     const formData = new FormData();
 
     formData.append('file', blobInfo.blob());
 
     http.request
-      .post('/files/upload', formData, {
+      .post('/file/open_source/upload', formData, {
         onUploadProgress: ({ total, loaded }) => {
           progress && progress((loaded / total) * 100);
         },
       })
       .then(({ data }) => {
-        onSuccess(getFile(data && data.data).url);
+        onSuccess(get(data, 'data.download_url'));
       })
       .catch(() => {
         onError('Error occurred', { remove: true });
@@ -70,8 +79,8 @@ const Editor: React.FC<IProps> = ({ name, validation, ...props }) => {
       apiKey={config.app.editorApiKey}
       id={field.name}
       value={field.value || ''}
-      message={hasError ? meta.error : ''}
       state={hasError ? 'error' : 'default'}
+      message={hasError ? meta.error : ''}
       onChange={value => helper.setValue(value)}
     />
   );

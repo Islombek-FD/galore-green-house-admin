@@ -18,13 +18,17 @@ interface IOptionGroup {
   children: IOption[];
 }
 
-export interface IProps extends Omit<SelectProps<any>, 'options' | 'onFocus' | 'onBlur'> {
+export interface IProps extends Omit<SelectProps, 'options' | 'onFocus' | 'onBlur'> {
   options: IOption[] | IOptionGroup[];
-  state?: 'default' | 'success' | 'error';
+  state?: 'default' | 'error';
   message?: string;
 }
 
-const Select: React.FC<IProps> = ({ options, state, message, disabled, ...props }) => {
+export function hasChildren(option: any): option is IOptionGroup {
+  return !!option?.children;
+}
+
+const Select: React.FC<IProps> = ({ options, state = 'default', message, disabled, ...props }) => {
   const [isFocused, setFocused] = useState(false);
 
   return (
@@ -45,10 +49,10 @@ const Select: React.FC<IProps> = ({ options, state, message, disabled, ...props 
         onDropdownVisibleChange={open => setFocused(open)}
         suffixIcon={<Icon name='ChevronDown' size={14} />}
       >
-        {options.map(option => {
-          if (option.children) {
+        {options.map((option, index) => {
+          if (hasChildren(option)) {
             return (
-              <SelectBase.OptGroup key={option.value} label={option.title}>
+              <SelectBase.OptGroup label={option.title} key={index}>
                 {option.children.map(option => (
                   <SelectBase.Option key={option.value} value={option.value}>
                     {option.title}
@@ -59,13 +63,13 @@ const Select: React.FC<IProps> = ({ options, state, message, disabled, ...props 
           }
 
           return (
-            <SelectBase.Option key={option.value} value={option.value} disabled={option.disabled}>
+            <SelectBase.Option value={option.value} disabled={option.disabled} key={index}>
               {option.title}
             </SelectBase.Option>
           );
         })}
       </SelectBase>
-      {!!message && <div className={cls.validation}>{message}</div>}
+      {!!message && <div className={cls.message}>{message}</div>}
     </div>
   );
 };

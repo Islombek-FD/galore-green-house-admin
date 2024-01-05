@@ -8,7 +8,7 @@ export type IProps = TextInputProps;
 
 const Input: React.FC<IProps> = ({
   id,
-  state,
+  state = 'default',
   value,
   type = 'text',
   size = 'medium',
@@ -24,7 +24,7 @@ const Input: React.FC<IProps> = ({
   onIconPrefix,
   iconSuffix,
   onIconSuffix,
-  validationMessage,
+  message,
 }) => {
   const [isFocused, setFocused] = useState(false);
 
@@ -41,7 +41,7 @@ const Input: React.FC<IProps> = ({
         onIconPrefix,
         iconSuffix,
         onIconSuffix,
-        validationMessage,
+        message,
       }}
     >
       <input

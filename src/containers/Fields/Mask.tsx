@@ -1,16 +1,25 @@
 import React from 'react';
-import Input, { IProps as InputProps } from '@/components/Input/Mask';
+import { useTranslation } from 'react-i18next';
 import { useField } from 'formik';
+
+import MaskBase, { IProps as InputProps } from '@/components/Input/Mask';
 
 interface IProps extends Omit<InputProps, 'id' | 'value'> {
   name: string;
+  caseUpper?: boolean;
   validation?: {
     required?: boolean;
+    min?: number;
+    max?: number;
+    minLength?: number;
+    maxLength?: number;
   };
   onChange?: (value: string) => void;
 }
 
-const Mask: React.FC<IProps> = ({ name, mask, validation, onChange, ...props }) => {
+const Mask: React.FC<IProps> = ({ name, mask, caseUpper, validation, onChange, ...props }) => {
+  const { t } = useTranslation();
+
   const [field, meta, helper] = useField({
     name,
     validate: (value): string => {
@@ -19,25 +28,27 @@ const Mask: React.FC<IProps> = ({ name, mask, validation, onChange, ...props }) 
       }
 
       if (validation.required && !value) {
-        return 'validation_required';
+        return t('validation_required');
       }
 
       if (!mask) {
-        return 'validation_mask_not_valid';
+        return t('validation_mask_not_valid');
       }
 
-      if (typeof mask === 'string') {
-        const maskLength = mask.replace(/[^#|a|0]+/g, '').length;
+      if (validation.min && validation.min > Number(value)) {
+        return t('validation_min', { min: validation.min });
+      }
 
-        if (maskLength) {
-          if (maskLength > (value || '').length) {
-            return 'validation_min_length';
-          }
+      if (validation.max && validation.max < Number(value)) {
+        return t('validation_max', { max: validation.max });
+      }
 
-          if (maskLength < (value || '').length) {
-            return 'validation_max_length';
-          }
-        }
+      if (validation.minLength && validation.minLength > (value || '').length) {
+        return t('validation_min_length', { min: validation.minLength });
+      }
+
+      if (validation.maxLength && validation.maxLength < (value || '').length) {
+        return t('validation_max_length', { max: validation.maxLength });
       }
 
       return '';
@@ -47,16 +58,16 @@ const Mask: React.FC<IProps> = ({ name, mask, validation, onChange, ...props }) 
   const hasError = !!(meta.error && meta.touched);
 
   return (
-    <Input
+    <MaskBase
       {...field}
       {...props}
       {...{ mask }}
       id={field.name}
       value={field.value || ''}
-      validationMessage={!!meta.touched && meta.error}
-      state={hasError ? 'error' : undefined}
+      state={hasError ? 'error' : 'default'}
+      message={hasError ? meta.error : ''}
       onChange={value => {
-        helper.setValue(value);
+        helper.setValue(caseUpper ? value.toUpperCase() : value);
         onChange && onChange(value);
       }}
     />

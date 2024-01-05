@@ -1,8 +1,9 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useField } from 'formik';
 import moment from 'moment';
 
-import TimePickerBase, { IProps as TimePickerProps } from '@/components/TimePicker/TimePicker';
+import TimePickerBase, { IProps as TimePickerProps } from '@/components/TimePicker';
 
 export interface IProps extends Omit<TimePickerProps, 'value' | 'format'> {
   name: string;
@@ -19,6 +20,8 @@ const TimePicker: React.FC<IProps> = ({
   onChange,
   ...props
 }) => {
+  const { t } = useTranslation();
+
   const [field, meta, helper] = useField({
     name,
     validate: (value): string => {
@@ -27,7 +30,7 @@ const TimePicker: React.FC<IProps> = ({
       }
 
       if (validation.required && !value) {
-        return 'validation_required';
+        return t('validation_required');
       }
 
       return '';

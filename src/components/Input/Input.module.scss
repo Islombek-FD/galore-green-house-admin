@@ -26,8 +26,8 @@
   }
 
   &--state {
-    &-success {
-      border-color: var(--status-green);
+    &-default {
+      border-color: var(--border-blue);
     }
 
     &-error {
@@ -109,7 +109,7 @@
   }
 }
 
-.validation {
+.message {
   position: absolute;
   top: calc(100% + 3px);
   left: 0;

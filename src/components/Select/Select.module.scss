@@ -3,17 +3,15 @@
   width: 100%;
 
   &--state {
-    &-success {
+    &-default {
       .select {
-        border-color: var(--status-green);
-        box-shadow: var(--shadow-input-positive);
+        border-color: var(--border-line);
       }
     }
 
     &-error {
       .select {
-        border-color: var(--status-red);
-        box-shadow: var(--shadow-input-negative);
+        border-color: var(--border-red);
       }
     }
   }
@@ -21,7 +19,7 @@
   &:not(.wrapper--disabled):hover,
   &:not(.wrapper--disabled).wrapper--focus {
     .select {
-      border-color: var(--status-blue);
+      border-color: var(--border-blue);
       box-shadow: var(--shadow-input-focus);
     }
   }
@@ -44,13 +42,13 @@
   transition: all 0.3s ease-in-out;
 }
 
-.validation {
+.message {
   position: absolute;
   top: calc(100% + 3px);
   left: 0;
   display: block;
-  color: var(--status-red);
   font-weight: 500;
   font-size: 13px;
   line-height: 150%;
+  color: var(--content-red);
 }

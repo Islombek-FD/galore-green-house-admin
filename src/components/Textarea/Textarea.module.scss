@@ -9,20 +9,15 @@
   }
 
   &--state {
-    &-success {
+    &-default {
       .textarea {
-        border-color: var(--status-green);
-        box-shadow: var(--shadow-input-positive);
+        border-color: var(--border-line);
       }
     }
 
     &-error {
       .textarea {
-        border-color: var(--status-red);
-      }
-
-      .message {
-        color: var(--status-red);
+        border-color: var(--border-red);
       }
     }
   }
@@ -40,38 +35,38 @@
   color: var(--content-primary);
   border: 1px solid transparent;
   border-radius: var(--border-radius-4);
-  outline: none;
   box-shadow: var(--shadow-input);
-  transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  outline: none;
   resize: none;
+  transition: background-color .3s ease-in-out, border .3s ease-in-out, box-shadow .3s ease-in-out;
 
   &::placeholder {
-    color: var(--content-tertiary);
     font-weight: 400;
     font-size: 15px;
     line-height: 150%;
+    color: var(--content-tertiary);
   }
 
   &:disabled {
-    background: var(--surface-z-3);
-    border: 1px solid var(--background-line);
+    background: var(--background-disabled);
+    border: 1px solid var(--border-line);
     cursor: not-allowed;
   }
 
   &:focus,
   &:hover {
-    border-color: var(--status-blue);
+    border-color: var(--border-blue);
     box-shadow: var(--shadow-input-focus);
   }
 }
 
-.validation {
+.message {
   position: absolute;
   top: calc(100% + 3px);
   left: 0;
   display: block;
-  color: var(--status-red);
   font-weight: 500;
   font-size: 13px;
   line-height: 150%;
+  color: var(--content-red);
 }

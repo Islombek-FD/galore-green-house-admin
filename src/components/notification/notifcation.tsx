@@ -1,4 +1,3 @@
-import React from 'react';
 import notificationBase, { ArgsProps, NotificationPlacement } from 'antd/lib/notification';
 
 import Icon from '@/components/Icon';
@@ -13,7 +12,7 @@ export interface IArgs {
   placement?: ArgsProps['placement'];
 }
 
-interface IReturn {
+interface INotification {
   success(args: IArgs): void;
   error(args: IArgs): void;
   warning(args: IArgs): void;
@@ -21,39 +20,37 @@ interface IReturn {
   destroy(): void;
 }
 
-const notification = (): IReturn => {
-  const props = {
-    closeIcon: <Icon name='Close' />,
-    placement: 'bottomRight' as NotificationPlacement,
-  };
-
-  return {
-    success: (args: IArgs) =>
-      notificationBase.success({
-        icon: <Icon name='TickCircle' />,
-        ...props,
-        ...args,
-      }),
-    error: (args: IArgs) =>
-      notificationBase.error({
-        icon: <Icon name='CloseCircle' />,
-        ...props,
-        ...args,
-      }),
-    warning: (args: IArgs) =>
-      notificationBase.warning({
-        icon: <Icon name='InfoCircle' />,
-        ...props,
-        ...args,
-      }),
-    info: (args: IArgs) =>
-      notificationBase.info({
-        icon: <Icon name='InfoCircle' />,
-        ...props,
-        ...args,
-      }),
-    destroy: () => notificationBase.destroy(),
-  };
+const props = {
+  closeIcon: <Icon name='Close' />,
+  placement: 'topRight' as NotificationPlacement,
 };
 
-export default notification();
+const notification: INotification = {
+  success: (args: IArgs) =>
+    notificationBase.success({
+      icon: <Icon name='TickCircle' />,
+      ...props,
+      ...args,
+    }),
+  error: (args: IArgs) =>
+    notificationBase.error({
+      icon: <Icon name='CloseCircle' />,
+      ...props,
+      ...args,
+    }),
+  warning: (args: IArgs) =>
+    notificationBase.warning({
+      icon: <Icon name='InfoCircle' />,
+      ...props,
+      ...args,
+    }),
+  info: (args: IArgs) =>
+    notificationBase.info({
+      icon: <Icon name='InfoCircle' />,
+      ...props,
+      ...args,
+    }),
+  destroy: () => notificationBase.destroy(),
+};
+
+export default notification;

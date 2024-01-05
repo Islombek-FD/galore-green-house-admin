@@ -32,6 +32,7 @@ const MultiUploader: React.FC<IProps> = ({
   validation,
 }) => {
   const { t } = useTranslation();
+
   const [field, meta, helpers] = useField({
     name,
     validate: (value): string => {
@@ -40,15 +41,15 @@ const MultiUploader: React.FC<IProps> = ({
       }
 
       if (validation.required && !value.length) {
-        return 'validation_required';
+        return t('validation_required');
       }
 
       if (validation.min && validation.min > value.length) {
-        return `validation_min_length_${validation.min}`;
+        return t('validation_min_length', { min: validation.min });
       }
 
       if (validation.max && validation.max < value.length) {
-        return `validation_max_length_${validation.max}`;
+        return t('validation_max_length', { max: validation.max });
       }
 
       return '';

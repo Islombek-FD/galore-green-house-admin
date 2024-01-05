@@ -20,7 +20,7 @@ const Wrapper: React.FC<IProps> = ({
   onIconPrefix,
   iconSuffix,
   onIconSuffix,
-  validationMessage,
+  message,
   children,
 }) => (
   <label
@@ -45,7 +45,7 @@ const Wrapper: React.FC<IProps> = ({
         {iconSuffix}
       </div>
     )}
-    {!!validationMessage && <span className={cls.validation}>{validationMessage}</span>}
+    {!!message && <span className={cls.message}>{message}</span>}
   </label>
 );
 

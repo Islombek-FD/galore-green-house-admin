@@ -11,13 +11,20 @@ interface IProps {
   languages?: { title: string; value: string }[];
 }
 
-const langs = [
-  { title: 'O’zbekcha', value: 'uz' },
-  { title: 'Ўзбекча', value: 'oz' },
+const defaultLanguages = [
+  { title: 'O’zbekcha', value: 'oz' },
+  { title: 'Ўзбекча', value: 'uz' },
+  { title: 'Arab', value: 'ar' },
   { title: 'Ruscha', value: 'ru' },
+  { title: 'English', value: 'en' },
 ];
 
-const LanguageSwitcher: React.FC<IProps> = ({ fields, active, onChange, languages = langs }) => {
+const LanguageSwitcher: React.FC<IProps> = ({
+  fields,
+  active,
+  onChange,
+  languages = defaultLanguages,
+}) => {
   const { errors, touched } = useFormikContext();
 
   const errorsCountByLanguage = languages.reduce((prev, language) => {

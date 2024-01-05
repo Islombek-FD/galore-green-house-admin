@@ -23,6 +23,6 @@ export enum FILE_TYPE {
 }
 
 export enum ROLE {
-  ADMIN = 'ADMIN',
-  MODERATOR = 'MODERATOR',
+  ADMIN = 'admin',
+  MODERATOR = 'moderator',
 }

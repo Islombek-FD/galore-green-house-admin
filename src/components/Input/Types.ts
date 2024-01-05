@@ -1,7 +1,7 @@
 import React from 'react';
 
 export interface WrapperProps {
-  state?: 'success' | 'error';
+  state?: 'default' | 'error';
   size?: 'small' | 'medium' | 'large';
   disabled?: boolean;
   readOnly?: boolean;
@@ -12,7 +12,7 @@ export interface WrapperProps {
   onIconPrefix?: () => void;
   iconSuffix?: React.ReactNode;
   onIconSuffix?: () => void;
-  validationMessage?: string | React.ReactNode;
+  message?: string | React.ReactNode;
 }
 
 export interface TextInputProps extends WrapperProps {
@@ -33,24 +33,16 @@ export enum MASK_TYPE {
   EMAIL = 'EMAIL',
 }
 
-export interface MaskInputProp extends Omit<TextInputProps, 'type'> {
+export interface MaskInputProps extends Omit<TextInputProps, 'type'> {
   mask: string | NumberConstructor | DateConstructor;
   maskType?: MASK_TYPE;
   unmask?: boolean;
   lazy?: boolean;
   placeholderChar?: string;
-
   [key: string]: any;
 }
 
 export interface NumberInputProps extends Omit<TextInputProps, 'type'> {
-  valuePrefix?: string;
-  valueSuffix?: string;
-  min?: number;
-  max?: number;
-}
-
-export interface AmountInputProps extends Omit<TextInputProps, 'type'> {
   valuePrefix?: string;
   valueSuffix?: string;
   min?: number;

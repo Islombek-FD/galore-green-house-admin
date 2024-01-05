@@ -16,9 +16,9 @@ interface ITreeNode {
   [prop: string]: any;
 }
 
-export interface IProps extends Omit<TreeSelectProps<any>, 'treeData' | 'onFocus' | 'onBlur'> {
+export interface IProps extends Omit<TreeSelectProps, 'treeData' | 'onFocus' | 'onBlur'> {
   options: ITreeNode[];
-  state?: 'default' | 'success' | 'error';
+  state?: 'default' | 'error';
   message?: string;
 }
 
@@ -38,14 +38,14 @@ const TreeSelect: React.FC<IProps> = ({ options, state, message, disabled, ...pr
         className={cls.treeSelect}
         {...props}
         {...{ disabled }}
+        treeData={options}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
         onDropdownVisibleChange={open => setFocused(open)}
         suffixIcon={<Icon name='ChevronDown' size={14} />}
-        treeData={options}
         switcherIcon={<Icon name='ChevronDown' size={12} />}
       />
-      {!!message && <div className={cls.validation}>{message}</div>}
+      {!!message && <div className={cls.message}>{message}</div>}
     </div>
   );
 };

@@ -8,7 +8,7 @@ export type IProps = NumberInputProps;
 
 const NumberInput: React.FC<IProps> = ({
   id,
-  state,
+  state = 'default',
   size = 'medium',
   min,
   max,
@@ -28,7 +28,7 @@ const NumberInput: React.FC<IProps> = ({
   iconSuffix,
   onIconSuffix,
   overwrite = false,
-  validationMessage,
+  message,
 }) => {
   const [isFocused, setFocused] = useState(false);
 
@@ -45,7 +45,7 @@ const NumberInput: React.FC<IProps> = ({
         onIconPrefix,
         iconSuffix,
         onIconSuffix,
-        validationMessage,
+        message,
       }}
     >
       <IMaskInput
@@ -72,13 +72,6 @@ const NumberInput: React.FC<IProps> = ({
             signed: false,
             normalizeZeros: true,
           },
-        }}
-        prepare={(value, mask) => {
-          if (mask.value === '0') {
-            mask.value = value;
-            return '';
-          }
-          return value;
         }}
         autoComplete='off'
         autoCorrect='off'

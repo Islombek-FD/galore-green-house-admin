@@ -24,7 +24,7 @@ const queryResponseHandler = data => {
   const status = get(data, 'data.status');
 
   if (type && message) {
-    const props = { key: status, message: message, placement: 'topRight' as const } as IArgs;
+    const props = { key: status, message } as IArgs;
 
     if (type === MESSAGE_TYPE.INFO) {
       notification.info(props);

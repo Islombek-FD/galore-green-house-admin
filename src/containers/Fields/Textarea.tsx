@@ -1,7 +1,8 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useField } from 'formik';
 
-import TextareaBase, { IProps as InputProps } from '@/components/Textarea/Textarea';
+import TextareaBase, { IProps as InputProps } from '@/components/Textarea';
 
 interface IProps extends Omit<InputProps, 'id' | 'value'> {
   name: string;
@@ -13,6 +14,8 @@ interface IProps extends Omit<InputProps, 'id' | 'value'> {
 }
 
 const Textarea: React.FC<IProps> = ({ name, validation, ...props }) => {
+  const { t } = useTranslation();
+
   const [field, meta, helper] = useField({
     name,
     validate: (value): string => {
@@ -21,15 +24,15 @@ const Textarea: React.FC<IProps> = ({ name, validation, ...props }) => {
       }
 
       if (validation.required && !value) {
-        return 'validation_required';
+        return t('validation_required');
       }
 
       if (validation.min && validation.min > (value || '').length) {
-        return `validation_min_length_${validation.min}`;
+        return t('validation_min_length', { min: validation.min });
       }
 
       if (validation.max && validation.max < (value || '').length) {
-        return `validation_max_length_${validation.max}`;
+        return t('validation_max_length', { max: validation.max });
       }
 
       return '';
@@ -43,9 +46,9 @@ const Textarea: React.FC<IProps> = ({ name, validation, ...props }) => {
       {...field}
       {...props}
       id={field.name}
-      validationMessage={meta.touched && meta.error}
       value={field.value || ''}
-      state={hasError ? 'error' : undefined}
+      state={hasError ? 'error' : 'default'}
+      message={hasError ? meta.error : ''}
       onChange={value => {
         helper.setValue(value);
       }}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useField } from 'formik';
 
 import TreeSelectBase, { IProps as TreeSelectProps } from '@/components/TreeSelect';
@@ -13,6 +14,8 @@ interface IProps extends Omit<TreeSelectProps, 'value'> {
 }
 
 const TreeSelect: React.FC<IProps> = ({ name, validation, onChange, ...props }) => {
+  const { t } = useTranslation();
+
   const [field, meta, helper] = useField({
     name,
     validate: (value): string => {
@@ -21,15 +24,15 @@ const TreeSelect: React.FC<IProps> = ({ name, validation, onChange, ...props }) 
       }
 
       if (validation.required && !value) {
-        return 'validation_required';
+        return t('validation_required');
       }
 
       if (validation.min && validation.min > (value || '').length) {
-        return `validation_min_length_${validation.min}`;
+        return t('validation_min_length', { min: validation.min });
       }
 
       if (validation.max && validation.max < (value || '').length) {
-        return `validation_max_length_${validation.max}`;
+        return t('validation_max_length', { max: validation.max });
       }
 
       return '';

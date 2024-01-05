@@ -6,14 +6,14 @@ import './TimePicker.scss';
 import cls from './TimePicker.module.scss';
 
 export interface IProps extends TimePickerProps {
-  state?: 'default' | 'success' | 'error';
+  state?: 'default' | 'error';
   message?: string;
 }
 
-const TimePicker: React.FC<IProps> = ({ state, message, ...props }) => (
+const TimePicker: React.FC<IProps> = ({ state = 'default', message, ...props }) => (
   <div className={cx(cls.wrapper, state && cls[`wrapper--state-${state}`])}>
     <TimePickerBase className={cls.timePicker} {...props} />
-    {!!message && <div className={cls.validation}>{message}</div>}
+    {!!message && <div className={cls.message}>{message}</div>}
   </div>
 );
 

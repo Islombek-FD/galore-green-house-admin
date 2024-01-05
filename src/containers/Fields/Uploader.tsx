@@ -25,6 +25,7 @@ interface IProps {
 const Uploader: React.FC<IProps> = ({ name, type, accept, maxFileSize, details, validation }) => {
   const { t } = useTranslation();
   const [isView, setView] = useState(false);
+
   const [field, meta, helpers] = useField({
     name,
     validate: (value): string => {
@@ -33,7 +34,7 @@ const Uploader: React.FC<IProps> = ({ name, type, accept, maxFileSize, details, 
       }
 
       if (validation.required && !value) {
-        return 'validation_required';
+        return t('validation_required');
       }
 
       return '';
@@ -100,6 +101,7 @@ const Uploader: React.FC<IProps> = ({ name, type, accept, maxFileSize, details, 
         }}
         message={meta.error}
       />
+
       <Modal title={item.name} open={isView} onCancel={() => setView(false)} width={800}>
         <img
           src={item.url}

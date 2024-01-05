@@ -7,14 +7,14 @@ import cls from './Textarea.module.scss';
 export interface IProps {
   id: string;
   value: string;
-  state?: 'default' | 'success' | 'error';
+  state?: 'default' | 'error';
   placeholder?: string;
   disabled?: boolean;
   rows?: number;
   maxRows?: number;
   onChange?: (value: string) => void;
   onBlur?: any;
-  validationMessage?: string | React.ReactNode;
+  message?: string | React.ReactNode;
 }
 
 const Textarea: React.FC<IProps> = ({
@@ -26,7 +26,7 @@ const Textarea: React.FC<IProps> = ({
   rows,
   onChange,
   onBlur,
-  validationMessage,
+  message,
   maxRows,
 }) => (
   <div className={cx(cls.wrapper, state && cls[`wrapper--state-${state}`])}>
@@ -41,7 +41,7 @@ const Textarea: React.FC<IProps> = ({
         {value}
       </TextareaBase>
     </label>
-    {!!validationMessage && <span className={cls.validation}>{validationMessage}</span>}
+    {!!message && <div className={cls.message}>{message}</div>}
   </div>
 );
 
