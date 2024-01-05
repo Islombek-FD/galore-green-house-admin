@@ -39,7 +39,6 @@ export declare namespace IQuery {
 
 export declare namespace IForm {
   export interface Values {
-    title: string;
     url: string;
     photoId: string;
     status: STATUS;

@@ -16,7 +16,7 @@ import Button from '@/components/Button';
 
 import cls from './Login.module.scss';
 
-const Auth: React.FC = () => {
+const Login: React.FC = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -66,4 +66,4 @@ const Auth: React.FC = () => {
   );
 };
 
-export default Auth;
+export default Login;

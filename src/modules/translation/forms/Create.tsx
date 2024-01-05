@@ -1,9 +1,8 @@
 import React from 'react';
-import { Form, Formik, FormikProps } from 'formik';
+import { Form, Formik, FormikHelpers, FormikProps } from 'formik';
 import { useMutation } from 'react-query';
 import * as yup from 'yup';
 
-import { STATUS } from '@/helpers/enums';
 import { objectMultiLangField } from '@/helpers/objects';
 import { validateMultiLangField } from '@/helpers/validations';
 
@@ -40,16 +39,10 @@ const Create: React.FC<IProps> = ({ onSuccess, onError, onSettled, children }) =
     name: validateMultiLangField,
   });
 
-  const handleSubmit = (
-    values: IFormValues,
-    { isSubmitting, setSubmitting }: FormikProps<IFormValues>,
-  ) => {
-    if (!isSubmitting) {
-      setSubmitting(true);
-      mutation.mutate(values, {
-        onError: () => setSubmitting(false),
-      });
-    }
+  const handleSubmit = (values: IFormValues, { setSubmitting }: FormikHelpers<IFormValues>) => {
+    mutation.mutate(values, {
+      onSettled: () => setSubmitting(false),
+    });
   };
 
   return (
@@ -59,7 +52,7 @@ const Create: React.FC<IProps> = ({ onSuccess, onError, onSettled, children }) =
         name: objectMultiLangField,
         tag: '',
         types: [],
-        status: STATUS.ACTIVE,
+        status: true,
       }}
       enableReinitialize
       {...{ validationSchema }}

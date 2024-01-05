@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Formik, FormikProps } from 'formik';
+import { Form, Formik, FormikHelpers, FormikProps } from 'formik';
 import { useMutation } from 'react-query';
 
 import { STATUS } from '@/helpers/enums';
@@ -33,16 +33,10 @@ const Create: React.FC<IProps> = ({ onSuccess, onError, onSettled, children }) =
     },
   );
 
-  const handleSubmit = (
-    values: IFormValues,
-    { isSubmitting, setSubmitting }: FormikProps<IFormValues>,
-  ) => {
-    if (!isSubmitting) {
-      setSubmitting(true);
-      mutation.mutate(values, {
-        onError: () => setSubmitting(false),
-      });
-    }
+  const handleSubmit = (values: IFormValues, { setSubmitting }: FormikHelpers<IFormValues>) => {
+    mutation.mutate(values, {
+      onSettled: () => setSubmitting(false),
+    });
   };
 
   return (

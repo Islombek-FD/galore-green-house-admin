@@ -1,10 +1,11 @@
 import React, { lazy, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { ROLE, STATUS } from '@/helpers/enums';
 
 import { useList } from '@/modules/banner/hooks';
+import { IEntity } from '@/modules/banner/types';
 
 import TableContainer from '@/containers/Table';
 import ImageContainer from '@/containers/Image';
@@ -68,12 +69,12 @@ const List: React.FC = () => {
           }}
           buttons={[
             <Button
-              key='create'
-              size='medium'
               title={t('action_add')}
               variant='green'
+              size='medium'
               prefixIcon={<Icon name='AddCircle' />}
-              container={<Link to='/banners/create' />}
+              onClick={() => navigate('/banners/create')}
+              key='create'
             />,
           ]}
         />
@@ -84,7 +85,7 @@ const List: React.FC = () => {
 
         <Spacer size={24} />
 
-        <TableContainer
+        <TableContainer<IEntity.Data>
           rowKey='id'
           columns={[
             {

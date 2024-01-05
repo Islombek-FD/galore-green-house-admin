@@ -1,4 +1,3 @@
-import { STATUS } from '@/helpers/enums';
 import { IMeta, IMultiName } from '@/helpers/interfaces';
 
 import { TRANSLATION_TYPE } from './constants';
@@ -43,6 +42,6 @@ export declare namespace IForm {
     name: IMultiName;
     tag: string;
     types: TRANSLATION_TYPE[];
-    status: STATUS;
+    status: boolean;
   }
 }

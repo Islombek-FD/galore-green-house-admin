@@ -10,7 +10,11 @@ import * as Grid from '@/components/Grid';
 import Icon from '@/components/Icon';
 import Label from '@/components/Label';
 
-const Form: React.FC = () => {
+interface IProps {
+  mode: 'create' | 'update';
+}
+
+const Form: React.FC<IProps> = ({ mode }) => {
   const { t } = useTranslation();
   const [show, setShow] = useState(false);
 
@@ -37,12 +41,13 @@ const Form: React.FC = () => {
           </Grid.Col>
 
           <Grid.Col xs={12}>
-            <Label title={t('field_password')} required>
+            <Label title={t('field_password')} required={mode === 'create'}>
               <Fields.Text
                 name='password'
                 type={show ? 'text' : 'password'}
                 iconSuffix={<Icon name='Eye' />}
                 onIconSuffix={() => setShow(prev => !prev)}
+                validation={{ required: mode === 'create' }}
               />
             </Label>
           </Grid.Col>

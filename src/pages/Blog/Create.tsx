@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import message from 'antd/lib/message';
 
 import * as Forms from '@/modules/blog/forms';
@@ -21,7 +21,7 @@ const Create: React.FC = () => {
     <>
       <Forms.Create
         onSuccess={() => {
-          navigate('/blogs');
+          navigate(-1);
           message.success(t('successfully_created'));
         }}
       >
@@ -48,21 +48,21 @@ const Create: React.FC = () => {
               }}
               buttons={[
                 <Button
-                  key='cancel'
                   title={t('action_cancel')}
                   variant='white'
                   prefixIcon={<Icon name='CloseCircle' />}
-                  container={<Link to='/blogs' />}
+                  onClick={() => navigate(-1)}
+                  key='cancel'
                 />,
                 <Button
-                  htmlType='submit'
-                  key='save'
                   title={t('action_save')}
                   variant='green'
+                  htmlType='submit'
                   prefixIcon={<Icon name='CheckmarkCircle' />}
+                  key='save'
                 />,
               ]}
-              onBack={() => navigate('/blogs')}
+              onBack={() => navigate(-1)}
             />
 
             <Spacer size={24} />

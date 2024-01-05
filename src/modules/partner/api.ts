@@ -23,7 +23,6 @@ export const Create = ({
   values: Types.IForm.Values;
 }): AxiosPromise<Types.IApi.Single.Response> =>
   http.request.post('/admin/partners', {
-    title: values.title,
     url: values.url,
     photoId: values.photoId,
     status: values.status,
@@ -37,7 +36,6 @@ export const Update = ({
   values: Types.IForm.Values;
 }): AxiosPromise<Types.IApi.Single.Response> =>
   http.request.put(`/admin/partners/${id}`, {
-    title: values.title,
     url: values.url,
     photoId: values.photoId,
     status: values.status,

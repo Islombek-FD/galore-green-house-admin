@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import message from 'antd/lib/message';
 
 import * as Forms from '@/modules/user/forms';
@@ -34,7 +34,7 @@ const Update: React.FC = () => {
           status: item.status,
         }}
         onSuccess={() => {
-          navigate('/users');
+          navigate(-1);
           message.success(t('successfully_updated'));
         }}
       >
@@ -61,26 +61,26 @@ const Update: React.FC = () => {
               }}
               buttons={[
                 <Button
-                  key='cancel'
                   title={t('action_cancel')}
                   variant='white'
                   prefixIcon={<Icon name='CloseCircle' />}
-                  container={<Link to='/users' />}
+                  onClick={() => navigate(-1)}
+                  key='cancel'
                 />,
                 <Button
-                  htmlType='submit'
-                  key='save'
                   title={t('action_save')}
                   variant='green'
+                  htmlType='submit'
                   prefixIcon={<Icon name='CheckmarkCircle' />}
+                  key='save'
                 />,
               ]}
-              onBack={() => navigate('/users')}
+              onBack={() => navigate(-1)}
             />
 
             <Spacer size={24} />
 
-            <Form />
+            <Form mode='update' />
           </>
         )}
       </Forms.Update>

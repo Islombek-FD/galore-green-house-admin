@@ -9,5 +9,5 @@ export const getData = (item?): Types.IEntity.Data => ({
   name: getMultiName(get(item, 'name')),
   tag: get(item, 'tag') || '',
   types: get(item, 'types') || [],
-  status: get(item, 'status') || '',
+  status: get(item, 'status') || false,
 });

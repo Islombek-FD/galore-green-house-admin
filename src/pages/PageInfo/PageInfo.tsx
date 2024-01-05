@@ -48,11 +48,11 @@ const PageInfo: React.FC = () => {
               }}
               buttons={[
                 <Button
-                  htmlType='submit'
-                  key='save'
                   title={t('action_save')}
                   variant='green'
+                  htmlType='submit'
                   prefixIcon={<Icon name='CheckmarkCircle' />}
+                  key='save'
                 />,
               ]}
             />

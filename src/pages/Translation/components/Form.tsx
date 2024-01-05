@@ -21,7 +21,7 @@ const Form: React.FC = () => {
         <Fields.LanguageSwitcher
           active={activeLanguage}
           onChange={value => setActiveLanguage(value)}
-          fields={['name', 'title', 'description']}
+          fields={['name']}
         />
       </Grid.Col>
 
@@ -66,11 +66,11 @@ const Form: React.FC = () => {
                 options={[
                   {
                     value: STATUS.ACTIVE,
-                    title: t(STATUS.ACTIVE),
+                    title: t('status_active'),
                   },
                   {
                     value: STATUS.INACTIVE,
-                    title: t(STATUS.INACTIVE),
+                    title: t('status_inactive'),
                   },
                 ]}
               />
