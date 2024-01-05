@@ -4,7 +4,7 @@ import * as Api from './api';
 import * as Actions from './actions';
 import * as Constants from './constants';
 
-export function* Logout(action: ReturnType<typeof Actions.Logout.request>) {
+export function* Logout() {
   try {
     yield call(Api.Logout);
     // eslint-disable-next-line no-empty

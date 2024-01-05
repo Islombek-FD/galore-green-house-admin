@@ -8,7 +8,8 @@ export const Login = {
 };
 
 export const Profile = {
-  request: (args: Types.IAction.Profile.Request) => action(Constants.PROFILE.REQUEST, args),
+  request: () => action(Constants.PROFILE.REQUEST),
+  success: (args: Types.IAction.Profile.Request) => action(Constants.PROFILE.SUCCESS, args),
 };
 
 export const Logout = {

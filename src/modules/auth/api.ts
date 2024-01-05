@@ -9,10 +9,12 @@ export const Login = ({
 }: {
   values: Types.IForm.Login;
 }): AxiosPromise<Types.IApi.Login.Response> =>
-  http.request.post('/auth/login', { ...values } as Types.IApi.Login.Request);
+  http.request.post('/login', {
+    login: values.username,
+    pass: values.password,
+  });
 
-export const Logout = (): AxiosPromise<Types.IApi.Profile.Response> =>
-  http.request.post('/auth/logout');
+export const Logout = (): AxiosPromise<Types.IApi.Profile.Response> => http.request.post('/logout');
 
-export const Profile = (): AxiosPromise<Types.IApi.Profile.Response> =>
-  http.request.get('/auth/me');
+export const Profile = ({ token }: { token: string }): AxiosPromise<Types.IApi.Profile.Response> =>
+  http.request.post('/check_token', { token });

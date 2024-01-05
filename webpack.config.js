@@ -1,10 +1,7 @@
 const path = require('path');
 const dotenv = require('dotenv');
 const webpack = require('webpack');
-const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = env => {
   dotenv.config({
@@ -16,12 +13,11 @@ module.exports = env => {
     entry: './src/index.tsx',
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: 'bundle.js',
+      filename: '[name].[contenthash].js',
       publicPath: '/',
-      assetModuleFilename: 'assets/[name][hash][ext]',
+      clean: true,
     },
     devServer: {
-      static: path.resolve(__dirname, './dist'),
       port: 7777,
       historyApiFallback: true,
     },
@@ -41,22 +37,12 @@ module.exports = env => {
           test: /\.(js|jsx)$/,
           include: path.resolve(__dirname, 'src', 'index.tsx'),
           exclude: /node_modules/,
-          use: [
-            {
-              loader: 'babel-loader',
-              options: {
-                plugins: [['import', { libraryName: 'antd', style: true }, 'antd'], 'lodash'],
-                presets: [['@babel/preset-env', { targets: 'defaults' }]],
-              },
-            },
-          ],
+          use: 'babel-loader',
         },
         {
           test: /\.(ts|tsx)$/,
           exclude: /node_modules/,
-          use: {
-            loader: 'ts-loader',
-          },
+          use: 'ts-loader',
         },
         {
           test: /\.scss$/,
@@ -67,8 +53,18 @@ module.exports = env => {
           use: ['style-loader', 'css-loader'],
         },
         {
-          test: /\.(jpg|jpeg|png|svg|gif|woff|woff2|eot|ttf)$/,
+          test: /\.(jpg|jpeg|png|svg)$/,
           type: 'asset/resource',
+          generator: {
+            filename: 'images/[hash][ext][query]',
+          },
+        },
+        {
+          test: /\.(woff|woff2)$/,
+          type: 'asset/resource',
+          generator: {
+            filename: 'fonts/[hash][ext][query]',
+          },
         },
       ],
     },
@@ -81,12 +77,19 @@ module.exports = env => {
       new webpack.DefinePlugin({
         'process.env': JSON.stringify(process.env),
       }),
-      new OptimizeCssAssetsPlugin(),
-      new CleanWebpackPlugin(),
     ],
     optimization: {
-      minimize: true,
-      minimizer: [new TerserPlugin()],
+      moduleIds: 'deterministic',
+      runtimeChunk: 'single',
+      splitChunks: {
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all',
+          },
+        },
+      },
     },
   };
 };

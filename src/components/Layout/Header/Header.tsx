@@ -30,7 +30,7 @@ interface IProps {
 const Header: React.FC<IProps> = ({ onToggle }) => {
   const { t, i18n } = useTranslation();
   const {
-    profile: { firstName, lastName },
+    profile: { username },
     methods: { logout },
   } = useAuth();
 
@@ -125,9 +125,7 @@ const Header: React.FC<IProps> = ({ onToggle }) => {
           overlayClassName={cls.overlay}
           trigger={['click']}
         >
-          <div className={cls.name}>
-            {firstName.charAt(0)} {lastName.charAt(0)}
-          </div>
+          <div className={cls.name}>{username.charAt(0)}</div>
         </Dropdown>
       </div>
     </Layout.Header>

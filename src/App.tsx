@@ -14,13 +14,13 @@ import Spinner from '@/components/Spinner';
 import CheckRole from '@/requires/CheckRole';
 
 const App: React.FC = () => {
-  const { isAuthenticated, isFetched, token } = useAuth();
+  const { isAuthenticated, isFetched } = useAuth();
 
   if (!isFetched) {
     return <Spinner full />;
   }
 
-  if (!isAuthenticated && !token) {
+  if (!isAuthenticated) {
     return (
       <Layouts.Auth>
         <Suspense fallback=''>
@@ -39,11 +39,7 @@ const App: React.FC = () => {
       <Suspense fallback=''>
         <Routes>
           {routes.map(({ path, roles, Page }) => (
-            <Route
-              key={path}
-              path={path}
-              element={<CheckRole roles={roles} page={<Page />} />}
-            />
+            <Route key={path} path={path} element={<CheckRole roles={roles} page={<Page />} />} />
           ))}
 
           <Route path='*' element={<Navigate to='/' />} />

@@ -6,6 +6,7 @@ export enum LOGIN {
 
 export enum PROFILE {
   REQUEST = '@@AUTH/PROFILE/REQUEST',
+  SUCCESS = '@@AUTH/PROFILE/SUCCESS',
 }
 
 export enum LOGOUT {

@@ -1,13 +1,11 @@
 import React from 'react';
 import { MenuProps } from 'antd/lib/menu';
 
-import { ROLE } from 'helpers/enums';
-
 export interface IMenu {
   key: string;
   title: string;
   icon: string;
-  roles: ROLE[];
+  roles: string[];
   suffix?: React.ReactNode;
   children?: ISubMenu[];
 }

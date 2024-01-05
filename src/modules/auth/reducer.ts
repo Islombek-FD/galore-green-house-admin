@@ -13,11 +13,8 @@ const initialState: Types.IState = {
   token: '',
   profile: {
     id: '',
-    fullName: '',
-    firstName: '',
-    lastName: '',
     username: '',
-    role: null,
+    role: '',
   },
 };
 
@@ -48,10 +45,16 @@ const reducer = (
         ...state,
         isAuthenticated: true,
         isFetched: false,
-        token: token.accessToken,
+        token,
       };
     }
     case Constants.PROFILE.REQUEST: {
+      return {
+        ...state,
+        isFetched: false,
+      };
+    }
+    case Constants.PROFILE.SUCCESS: {
       const { profile } = action.payload;
 
       return {
@@ -69,9 +72,9 @@ const reducer = (
 const isFetchedTransform = createTransform<boolean, boolean, Types.IState, any>(
   state => state,
   (isFetched, key, stored) => {
-    const token: Types.IEntity.Token = JSON.parse(stored.token);
+    const token = JSON.parse(stored.token);
 
-    return !token.accessToken;
+    return !token;
   },
   { whitelist: ['isFetched'] },
 );

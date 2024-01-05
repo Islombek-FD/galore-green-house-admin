@@ -1,7 +1,6 @@
 import React from 'react';
 import { Form, Formik, FormikProps } from 'formik';
 import { useMutation } from 'react-query';
-import * as yup from 'yup';
 
 import { STATUS, ROLE } from '@/helpers/enums';
 
@@ -34,10 +33,6 @@ const Create: React.FC<IProps> = ({ onSuccess, onError, onSettled, children }) =
     },
   );
 
-  const validationSchema = yup.object().shape({
-    password: yup.string().required(),
-  });
-
   const handleSubmit = (
     values: IFormValues,
     { isSubmitting, setSubmitting }: FormikProps<IFormValues>,
@@ -62,7 +57,6 @@ const Create: React.FC<IProps> = ({ onSuccess, onError, onSettled, children }) =
         status: STATUS.ACTIVE,
       }}
       enableReinitialize
-      {...{ validationSchema }}
     >
       {(props: FormikProps<IFormValues>) => <Form>{children(props)}</Form>}
     </Formik>

@@ -10,10 +10,10 @@ import Typography from '@/components/Typography';
 interface IProps {
   isLoading: boolean;
   onCancel: () => void;
-  Confirm: () => void;
+  onConfirm: () => void;
 }
 
-const ConfirmDelete: React.FC<IProps> = ({ isLoading, onCancel, Confirm }) => {
+const ConfirmDelete: React.FC<IProps> = ({ isLoading, onCancel, onConfirm }) => {
   const { t } = useTranslation();
 
   return (
@@ -36,7 +36,7 @@ const ConfirmDelete: React.FC<IProps> = ({ isLoading, onCancel, Confirm }) => {
         </Grid.Col>
 
         <Grid.Col xs={12}>
-          <Button title={t('action_delete')} variant='red' onClick={Confirm} size='small' block />
+          <Button title={t('action_delete')} variant='red' onClick={onConfirm} size='small' block />
         </Grid.Col>
       </Grid.Row>
     </Spinner>

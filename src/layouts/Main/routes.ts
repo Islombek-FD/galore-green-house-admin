@@ -1,5 +1,3 @@
-import { ROLE } from '@/helpers/enums';
-
 import { IMenu } from '@/components/Menu/Types';
 
 const routes: IMenu[] = [
@@ -7,49 +5,49 @@ const routes: IMenu[] = [
     key: '/',
     icon: 'Dashboard',
     title: 'dashboard',
-    roles: [ROLE.ADMIN, ROLE.MODERATOR]
+    roles: ['admin'],
   },
   {
     key: '/networks',
     icon: 'Banner',
     title: 'networks',
-    roles: [ROLE.ADMIN, ROLE.MODERATOR]
+    roles: ['admin'],
   },
   {
     key: '/banners',
     icon: 'Banner',
     title: 'banners',
-    roles: [ROLE.ADMIN, ROLE.MODERATOR]
+    roles: ['admin'],
   },
   {
     key: '/blogs',
     icon: 'Video',
     title: 'blogs',
-    roles: [ROLE.ADMIN, ROLE.MODERATOR]
+    roles: ['admin'],
   },
   {
     key: '/partners',
     icon: 'Partner',
     title: 'partners',
-    roles: [ROLE.ADMIN, ROLE.MODERATOR]
+    roles: ['admin'],
   },
   {
     key: '/page-infos',
     icon: 'Banner',
     title: 'page_infos',
-    roles: [ROLE.ADMIN, ROLE.MODERATOR]
+    roles: ['admin'],
   },
   {
     key: '/users',
     icon: 'UserCircle',
     title: 'users',
-    roles: [ROLE.ADMIN]
+    roles: ['admin'],
   },
   {
     key: '/translations',
     icon: 'Translation',
     title: 'translations',
-    roles: [ROLE.ADMIN, ROLE.MODERATOR]
+    roles: ['admin'],
   },
 ];
 

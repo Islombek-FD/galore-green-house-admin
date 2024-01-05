@@ -15,7 +15,7 @@ const ConfirmDelete: React.FC<IProps> = ({ id, onCancel }) => {
   const { t } = useTranslation();
   const { mutate, isLoading } = useDelete();
 
-  const Confirm = () => {
+  const onConfirm = () => {
     mutate(
       { id },
       {
@@ -27,7 +27,7 @@ const ConfirmDelete: React.FC<IProps> = ({ id, onCancel }) => {
     );
   };
 
-  return <ConfirmDeleteBase {...{ isLoading, Confirm, onCancel }} />;
+  return <ConfirmDeleteBase {...{ isLoading, onCancel, onConfirm }} />;
 };
 
 export default ConfirmDelete;

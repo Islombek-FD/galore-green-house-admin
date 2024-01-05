@@ -25,7 +25,7 @@ const Auth: React.FC = () => {
     <div className={cls.wrapper}>
       <div className={cls.content}>
         <Forms.Login
-          onSuccess={token => {
+          onSuccess={({ token }) => {
             message.success(t('successfully_login'));
             dispatch(Actions.Login.request({ token }));
             navigate('/');

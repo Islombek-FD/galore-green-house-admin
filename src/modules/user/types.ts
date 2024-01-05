@@ -1,5 +1,5 @@
 import { ROLE, STATUS } from '@/helpers/enums';
-import { IMinFile, IMeta, IIdAndName } from '@/helpers/interfaces';
+import { IMeta } from '@/helpers/interfaces';
 
 export declare namespace IApi {
   export namespace List {

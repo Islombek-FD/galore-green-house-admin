@@ -1,15 +1,7 @@
-import { ROLE } from '@/helpers/enums';
-
 export declare namespace IAction {
   export namespace Login {
     export interface Request {
-      token: IEntity.Token;
-    }
-  }
-
-  export namespace Logout {
-    export interface Request {
-      accessToken: string;
+      token: string;
     }
   }
 
@@ -22,11 +14,6 @@ export declare namespace IAction {
 
 export declare namespace IApi {
   export namespace Login {
-    export interface Request {
-      username: string;
-      password: string;
-    }
-
     export interface Response {
       data: {
         accessToken: string;
@@ -44,24 +31,16 @@ export declare namespace IApi {
 export declare namespace IEntity {
   export interface Profile {
     id: string;
-    fullName: string;
-    firstName: string;
-    lastName: string;
     username: string;
-    role: ROLE;
+    role: string;
   }
 
   export interface Token {
-    accessToken: string;
+    token: string;
   }
 }
 
 export declare namespace IQuery {
-  export interface Login {
-    username: string;
-    password: string;
-  }
-
   export type Profile = IEntity.Profile;
 }
 

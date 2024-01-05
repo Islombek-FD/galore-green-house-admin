@@ -1,14 +1,12 @@
 import React from 'react';
 
-import { ROLE } from '@/helpers/enums';
-
 import * as Hooks from '@/modules/auth/hooks';
 
 import RoleDenied from '@/pages/RoleDenied';
 
 interface IProps {
   page: React.ReactNode;
-  roles: ROLE[];
+  roles: string[];
 }
 
 const CheckRole: React.FC<IProps> = ({ page, roles }) => {

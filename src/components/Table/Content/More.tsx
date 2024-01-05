@@ -1,8 +1,6 @@
 import React from 'react';
 import cx from 'classnames';
 
-import { ROLE } from '@/helpers/enums';
-
 import { useAuth } from '@/modules/auth/hooks';
 
 import Icon from '@/components/Icon';
@@ -13,7 +11,7 @@ import cls from '../Table.module.scss';
 interface Item {
   title: string;
   icon?: React.ReactNode;
-  roles?: ROLE[];
+  roles?: string[];
   variant?: 'primary' | 'blue' | 'danger';
   onClick?: () => void;
 }

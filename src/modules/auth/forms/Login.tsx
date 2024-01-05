@@ -22,7 +22,7 @@ const Login: React.FC<IProps> = ({ onSuccess, onError, onSettled, children }) =>
     async values => {
       const { data } = await Api.Login({ values });
 
-      return Mappers.Token(data && data.data);
+      return Mappers.Token(data);
     },
     {
       onSuccess,

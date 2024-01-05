@@ -7,7 +7,7 @@ import { IParams } from '@/helpers/interfaces';
 import * as Types from './types';
 
 export const List = ({ params }: { params: IParams }): AxiosPromise<Types.IApi.List.Response> =>
-  http.request.post('/admin/translations/pageable', {
+  http.request.post('/admin/translate/pageable', {
     perPage: params.perPage,
     page: params.page,
     sort: params.sort,
@@ -15,14 +15,14 @@ export const List = ({ params }: { params: IParams }): AxiosPromise<Types.IApi.L
   });
 
 export const Single = ({ id }: { id: string }): AxiosPromise<Types.IApi.Single.Response> =>
-  http.request.get(`/admin/translations/${id}`);
+  http.request.get(`/admin/translate/${id}`);
 
 export const Create = ({
   values,
 }: {
   values: Types.IForm.Values;
 }): AxiosPromise<Types.IApi.Single.Response> =>
-  http.request.post('/admin/translations', {
+  http.request.post('/admin/translate', {
     name: values.name,
     tag: values.tag,
     types: values.types,
@@ -36,7 +36,7 @@ export const Update = ({
   id: string;
   values: Types.IForm.Values;
 }): AxiosPromise<Types.IApi.Single.Response> =>
-  http.request.put(`/admin/translations/${id}`, {
+  http.request.put(`/admin/translate/${id}`, {
     name: values.name,
     tag: values.tag,
     types: values.types,
@@ -44,4 +44,4 @@ export const Update = ({
   });
 
 export const Delete = ({ id }: { id: string }): AxiosPromise<Types.IApi.Single.Response> =>
-  http.request.delete(`/admin/translations/${id}`);
+  http.request.delete(`/admin/translate/${id}`);

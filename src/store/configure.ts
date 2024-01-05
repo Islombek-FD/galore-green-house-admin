@@ -13,11 +13,8 @@ import middleware, { sagaMiddleware } from './middleware';
 
 import type * as Types from './types';
 
-export default (
-  initialState: Partial<Types.IState> = {},
-): { store: Store<Types.IState>; persist: Persistor } => {
-  const composeEnhancer =
-    process.env.NODE_ENV === 'development' ? composeWithDevTools({}) : compose;
+export default (): { store: Store<Types.IState>; persist: Persistor } => {
+  const composeEnhancer = config.app.isDev ? composeWithDevTools({}) : compose;
 
   Object.keys(localStorage).forEach(key => {
     const matches = key.match(/persist:version-(.*)/);
@@ -37,18 +34,19 @@ export default (
     storage,
     whitelist: [],
   };
+
   const persistedReducer = persistReducer<Types.IState>(persistConfig, rootReducer);
+
   const store: Store<Types.IState> = createStore<
     Types.IState & PersistPartial,
-    Action<any>,
+    Action,
     unknown,
     unknown
   >(persistedReducer, composeEnhancer(applyMiddleware(...middleware)));
+
   const persist = persistStore(store);
 
   sagaMiddleware.run(rootSaga);
-
-  /* istanbul ignore next */
 
   // @ts-ignore
   if (module.hot) {

@@ -17,19 +17,21 @@ interface IProps {
 const Auth: React.FC<IProps> = ({ children }) => {
   const dispatch = useDispatch();
 
-  const accessToken = useSelector<Store.Types.IState, string>(state => state.auth.token);
+  const token = useSelector<Store.Types.IState, string>(state => state.auth.token);
 
-  useQuery<Types.IEntity.Profile, any, Types.IEntity.Profile>(
-    [Constants.ENTITY, 'profile', accessToken],
+  useQuery<Types.IQuery.Profile, any, Types.IQuery.Profile>(
+    [Constants.ENTITY, 'profile', token],
     async () => {
-      const { data } = await Api.Profile();
+      dispatch(Actions.Profile.request());
+
+      const { data } = await Api.Profile({ token });
 
       return Mappers.Profile(data && data.data);
     },
     {
-      enabled: !!accessToken,
+      enabled: !!token,
       onSuccess: profile => {
-        dispatch(Actions.Profile.request({ profile }));
+        dispatch(Actions.Profile.success({ profile }));
       },
       onError: () => {
         dispatch(Actions.Logout.request());
