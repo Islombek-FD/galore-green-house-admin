@@ -8,9 +8,9 @@ const routes: IMenu[] = [
     roles: ['admin'],
   },
   {
-    key: '/networks',
+    key: '/social-networks',
     icon: 'Banner',
-    title: 'networks',
+    title: 'social_networks',
     roles: ['admin'],
   },
   {
@@ -29,6 +29,12 @@ const routes: IMenu[] = [
     key: '/partners',
     icon: 'Partner',
     title: 'partners',
+    roles: ['admin'],
+  },
+  {
+    key: '/faqs',
+    icon: 'Partner',
+    title: 'faqs',
     roles: ['admin'],
   },
   {

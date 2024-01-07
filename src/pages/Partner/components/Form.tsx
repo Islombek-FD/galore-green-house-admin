@@ -15,19 +15,13 @@ const Form: React.FC = () => {
   return (
     <Grid.Row gutter={[24, 24]}>
       <Grid.Col xs={24} xl={16}>
-        <Label title={t('field_title')} required>
-          <Fields.Text name='title' validation={{ required: true }} />
+        <Label title={t('field_url')} required>
+          <Fields.Text name='url' validation={{ required: true }} />
         </Label>
       </Grid.Col>
 
       <Grid.Col xs={24} xl={8}>
         <Grid.Row gutter={[24, 24]}>
-          <Grid.Col xs={24}>
-            <Label title={t('field_url')} required>
-              <Fields.Text name='url' validation={{ required: true }} />
-            </Label>
-          </Grid.Col>
-
           <Grid.Col xs={24}>
             <Label title={t('field_photo')} required>
               <Fields.Uploader

@@ -15,8 +15,8 @@ import {
 export const getMeta = (item?): IMeta => ({
   totalPages: get(item, 'totalPages') || 0,
   totalItems: get(item, 'totalCount') || 0,
-  current: get(item, 'page') ? get(item, 'page') + 1 : 1,
-  perPage: get(item, 'size') || 1,
+  current: get(item, 'page') ? get(item, 'page') : 0,
+  size: get(item, 'size') || 1,
 });
 
 export const getFile = (item?): IFile => {
@@ -32,7 +32,7 @@ export const getFile = (item?): IFile => {
   return {
     id: get(item, 'id') || '',
     name: get(item, 'name') || '',
-    url: `${config.api.downloadUrl}/${uuid}`,
+    url: get(item, 'uploadpath') || '',
     size: getFileSize(get(item, 'size') || 0),
     type: types[type] || FILE_TYPE.FILE,
     extension: get(item, 'extension') || '',
@@ -66,9 +66,9 @@ export const getFileSize = (bytes, decimals = 2) => {
 export const getMultiName = (item?): IMultiName => ({
   oz: get(item, 'oz') || '',
   uz: get(item, 'uz') || '',
-  ar: get(item, 'ar') || '',
   ru: get(item, 'ru') || '',
   en: get(item, 'en') || '',
+  ar: get(item, 'ar') || '',
 });
 
 export const getIdAndMultiName = (item?): IIdAndMultiName => ({

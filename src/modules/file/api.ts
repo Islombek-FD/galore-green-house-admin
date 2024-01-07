@@ -31,8 +31,5 @@ export const Download = ({ uuid }: { uuid: string }): AxiosPromise<Types.IApi.Si
   });
 };
 
-export const Delete = ({
-  id,
-}: {
-  id: string;
-}): AxiosPromise<{ data: Types.IApi.Single.Response }> => http.request.post(`/files/${id}`);
+export const Delete = ({ id }: { id: string }): AxiosPromise<Types.IApi.Single.Response> =>
+  http.request.post(`/files/${id}`);

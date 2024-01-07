@@ -4,19 +4,24 @@ import get from 'lodash/get';
 
 import LanguageSwitcherBase from '@/components/LanguageSwitcher';
 
+interface ILanguage {
+  title: string;
+  value: string;
+}
+
 interface IProps {
   active: string;
   onChange: (value: string) => void;
   fields: string[];
-  languages?: { title: string; value: string }[];
+  languages?: ILanguage[];
 }
 
 const defaultLanguages = [
   { title: 'O’zbekcha', value: 'oz' },
   { title: 'Ўзбекча', value: 'uz' },
-  { title: 'Arab', value: 'ar' },
   { title: 'Ruscha', value: 'ru' },
   { title: 'English', value: 'en' },
+  { title: 'Arab', value: 'ar' },
 ];
 
 const LanguageSwitcher: React.FC<IProps> = ({

@@ -27,7 +27,6 @@
   &--disabled {
     .timePicker {
       background-color: var(--background-disabled);
-      box-shadow: none;
       cursor: not-allowed;
     }
   }
@@ -39,7 +38,7 @@
   border: 1px solid transparent;
   border-radius: var(--border-radius-4);
   box-shadow: var(--shadow-input);
-  transition: all 0.3s ease-in-out;
+  transition: all .3s ease-in-out;
 }
 
 .message {

@@ -8,7 +8,7 @@
     .ant-spin-container {
       &::after {
         background: var(--background-loading) !important;
-        transition: all 0.2s ease-in-out !important;
+        transition: all .3s ease-in-out !important;
       }
 
       &.ant-spin-blur::after {

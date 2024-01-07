@@ -4,7 +4,6 @@ import cx from 'classnames';
 import Icon from '@/components/Icon';
 
 import Menu from './Menu';
-import Buttons from './Buttons';
 
 import cls from './Filter.module.scss';
 
@@ -17,7 +16,6 @@ interface IProps {
 
 interface IComponent extends React.FC<IProps> {
   Menu: typeof Menu;
-  Buttons: typeof Buttons;
 }
 
 const Filter: IComponent = ({ title, value, isActive, onClear }) => (
@@ -38,7 +36,6 @@ const Filter: IComponent = ({ title, value, isActive, onClear }) => (
   </div>
 );
 
-Filter.Buttons = Buttons;
 Filter.Menu = Menu;
 
 export default Filter;

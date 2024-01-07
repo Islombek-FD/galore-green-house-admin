@@ -7,7 +7,7 @@
   background-color: var(--background-white);
   border: 2px dashed var(--border-line);
   border-radius: var(--border-radius-4);
-  transition: all 0.2s ease-in-out;
+  transition: all .3s ease-in-out;
   user-select: none;
 
   &--state {
@@ -21,7 +21,7 @@
   }
 
   &:hover {
-    border-color: var(--status-blue);
+    border-color: var(--border-blue);
 
     .upload {
       &Icon,
@@ -81,7 +81,7 @@
     height: 32px;
     min-height: 32px;
     color: var(--content-tertiary);
-    transition: all 0.3s ease-in-out;
+    transition: all .3s ease-in-out;
   }
 
   &Button {
@@ -97,7 +97,7 @@
     border-radius: var(--border-radius-4);
     cursor: pointer;
     user-select: none;
-    transition: all 0.3s ease-in-out;
+    transition: all .3s ease-in-out;
 
     &:hover {
       color: var(--content-primary);
@@ -168,7 +168,7 @@
       width: 100%;
       height: 100%;
       margin: auto;
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0.21%, rgba(0, 0, 0, 0.35) 100%);
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) .21%, rgba(0, 0, 0, .35) 100%);
     }
 
     img {

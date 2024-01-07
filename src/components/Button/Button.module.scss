@@ -7,7 +7,7 @@
   cursor: pointer;
   user-select: none;
   will-change: transform;
-  transition: transform 0.2s ease-in-out;
+  transition: transform .3s ease-in-out;
 
   &--variant {
     &-blue,
@@ -89,7 +89,7 @@
 
   &--disabled {
     cursor: not-allowed;
-    opacity: 0.5;
+    opacity: .5;
   }
 
   &:not(.wrapper--disabled) {
@@ -98,7 +98,7 @@
     }
 
     &:active {
-      transform: scale(0.9995);
+      transform: scale(.9995);
     }
   }
 }

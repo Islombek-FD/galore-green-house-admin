@@ -20,12 +20,8 @@ const useList = ({ params }: IProps = {}) => {
 
   const paramsWithDefaults = {
     page: params?.page ? params.page - 1 : 0,
-    perPage: params?.perPage || config.list.perPage,
-    sort: {
-      name: params?.sort?.name || 'id',
-      direction: params?.sort?.direction || 'desc',
-    },
-    filter: (params?.filter || []).filter(i => !!i.value),
+    limit: params?.limit || config.list.limit,
+    search: params?.search || '',
   };
 
   const { data = initialData, ...args } = useQuery<Types.IQuery.List, string, Types.IQuery.List>(

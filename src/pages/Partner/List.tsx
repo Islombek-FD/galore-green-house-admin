@@ -1,13 +1,18 @@
-import React, { lazy, useState } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { ROLE } from '@/helpers/enums';
+
+import useFilter from '@/hooks/useFilter';
 
 import { useList } from '@/modules/partner/hooks';
 import { IEntity } from '@/modules/partner/types';
 
+import * as Filters from '@/containers/Filters';
+
 import TableContainer from '@/containers/Table';
+import ImageContainer from '@/containers/Image';
 import PaginationContainer from '@/containers/Pagination';
 
 import Tag from '@/components/Tag';
@@ -18,41 +23,20 @@ import Spacer from '@/components/Spacer';
 import Button from '@/components/Button';
 import PageHeader from '@/components/PageHeader';
 
-import FilterList from './components/FilterList';
+import ConfirmDelete from './components/ConfirmDelete';
 
 import cls from '@/assets/styles/base/page.module.scss';
-
-const ConfirmDelete = lazy(() => import('./components/ConfirmDelete'));
 
 const List: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const [query] = useSearchParams();
+  const [query, setParamValue] = useFilter();
   const [selected, setSelected] = useState('');
 
   const { items, meta, isFetched } = useList({
     params: {
       page: +query.get('page')!,
-      filter: [
-        {
-          key: 'title',
-          operation: '%_%',
-          value: query.get('title'),
-          type: 'STRING',
-        },
-        {
-          key: 'url',
-          operation: '%_%',
-          value: query.get('url'),
-          type: 'STRING',
-        },
-        {
-          key: 'status',
-          operation: '=',
-          value: query.get('status'),
-          type: 'STRING',
-        },
-      ],
+      search: query.get('search') || '',
     },
   });
 
@@ -86,7 +70,13 @@ const List: React.FC = () => {
 
         <Spacer size={24} />
 
-        <FilterList />
+        <div className={cls.search}>
+          <Filters.Input
+            name='search'
+            value={query.get('search') || ''}
+            setValue={value => setParamValue('search', value)}
+          />
+        </div>
 
         <Spacer size={24} />
 
@@ -96,12 +86,13 @@ const List: React.FC = () => {
             {
               title: '№',
               width: '60px',
-              render: (text, record, index) => (meta.current - 1) * meta.perPage + index + 1,
+              render: (text, record, index) => (meta.current - 1) * meta.size + index + 1,
             },
             {
-              key: 'title',
-              title: t('column_title'),
-              dataIndex: 'title',
+              key: 'photo',
+              title: t('column_photo'),
+              dataIndex: 'photoUrl',
+              render: value => <ImageContainer url={value} />,
             },
             {
               key: 'url',

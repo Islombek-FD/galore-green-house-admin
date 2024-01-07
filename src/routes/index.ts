@@ -9,19 +9,19 @@ export default [
     Page: lazy(() => import('@/pages/Dashboard')),
   },
   {
-    path: '/networks',
+    path: '/social-networks',
     roles: [ROLE.ADMIN, ROLE.MODERATOR],
-    Page: lazy(() => import('@/pages/Network/List')),
+    Page: lazy(() => import('@/pages/SocialNetwork/List')),
   },
   {
-    path: '/networks/create',
+    path: '/social-networks/create',
     roles: [ROLE.ADMIN, ROLE.MODERATOR],
-    Page: lazy(() => import('@/pages/Network/Create')),
+    Page: lazy(() => import('@/pages/SocialNetwork/Create')),
   },
   {
-    path: '/networks/update/:id',
+    path: '/social-networks/update/:id',
     roles: [ROLE.ADMIN, ROLE.MODERATOR],
-    Page: lazy(() => import('@/pages/Network/Update')),
+    Page: lazy(() => import('@/pages/SocialNetwork/Update')),
   },
   {
     path: '/banners',
@@ -67,6 +67,21 @@ export default [
     path: '/partners/update/:id',
     roles: [ROLE.ADMIN, ROLE.MODERATOR],
     Page: lazy(() => import('@/pages/Partner/Update')),
+  },
+  {
+    path: '/faqs',
+    roles: [ROLE.ADMIN, ROLE.MODERATOR],
+    Page: lazy(() => import('@/pages/Faq/List')),
+  },
+  {
+    path: '/faqs/create',
+    roles: [ROLE.ADMIN, ROLE.MODERATOR],
+    Page: lazy(() => import('@/pages/Faq/Create')),
+  },
+  {
+    path: '/faqs/update/:id',
+    roles: [ROLE.ADMIN, ROLE.MODERATOR],
+    Page: lazy(() => import('@/pages/Faq/Update')),
   },
   {
     path: '/page-infos',

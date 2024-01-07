@@ -59,7 +59,7 @@
   &Disabled {
     .itemLink,
     .itemIcon {
-      color: rgba(18, 18, 67, 0.3);
+      color: rgba(18, 18, 67, .3);
       cursor: not-allowed;
 
       &:hover {
@@ -71,7 +71,7 @@
   &Disabled {
     .itemPrevLink:hover .itemIcon,
     .itemNextLink:hover .itemIcon {
-      color: rgba(18, 18, 67, 0.3);
+      color: rgba(18, 18, 67, .3);
     }
   }
 }

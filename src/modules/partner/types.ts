@@ -1,5 +1,5 @@
 import { STATUS } from '@/helpers/enums';
-import { IMeta, IMinFile } from '@/helpers/interfaces';
+import { IMeta } from '@/helpers/interfaces';
 
 export declare namespace IApi {
   export namespace List {
@@ -16,9 +16,9 @@ export declare namespace IApi {
 }
 
 export declare namespace IEntity {
-  export interface Data extends Omit<IForm.Values, 'photoId'> {
+  export interface Data extends IForm.Values {
     id: string;
-    photo: IMinFile;
+    photoUrl: string;
   }
 }
 

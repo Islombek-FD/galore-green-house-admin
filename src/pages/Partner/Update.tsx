@@ -27,7 +27,7 @@ const Update: React.FC = () => {
         id={id}
         values={{
           url: item.url,
-          photoId: item.photo.id,
+          photoId: item.photoId,
           status: item.status,
         }}
         onSuccess={() => {

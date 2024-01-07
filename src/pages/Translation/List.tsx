@@ -1,4 +1,4 @@
-import React, { lazy, useState } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
@@ -19,10 +19,9 @@ import Button from '@/components/Button';
 import PageHeader from '@/components/PageHeader';
 
 import FilterList from './components/FilterList';
+import ConfirmDelete from './components/ConfirmDelete';
 
 import cls from '@/assets/styles/base/page.module.scss';
-
-const ConfirmDelete = lazy(() => import('./components/ConfirmDelete'));
 
 const List: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -33,26 +32,7 @@ const List: React.FC = () => {
   const { items, meta, isFetched } = useList({
     params: {
       page: +query.get('page')!,
-      filter: [
-        {
-          key: 'name',
-          operation: '%_%',
-          value: query.get('name'),
-          type: 'STRING',
-        },
-        {
-          key: 'tag',
-          operation: '%_%',
-          value: query.get('tag'),
-          type: 'STRING',
-        },
-        {
-          key: 'status',
-          operation: '=',
-          value: query.get('status'),
-          type: 'STRING',
-        },
-      ],
+      search: query.get('search') || '',
     },
   });
 
@@ -96,7 +76,7 @@ const List: React.FC = () => {
             {
               title: '№',
               width: '60px',
-              render: (text, record, index) => (meta.current - 1) * meta.perPage + index + 1,
+              render: (text, record, index) => (meta.current - 1) * meta.size + index + 1,
             },
             {
               key: 'name',

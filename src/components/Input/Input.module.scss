@@ -6,7 +6,7 @@
   border: 1px solid transparent;
   border-radius: var(--border-radius-4);
   box-shadow: var(--shadow-input);
-  transition: all 0.3s ease-in-out;
+  transition: all .3s ease-in-out;
 
   &--size {
     &-small {
@@ -27,7 +27,7 @@
 
   &--state {
     &-default {
-      border-color: var(--border-blue);
+      border-color: var(--border-line);
     }
 
     &-error {
@@ -63,7 +63,7 @@
   }
 
   &--disabled {
-    background-color: var(--background-gray);
+    background-color: var(--background-disabled);
     box-shadow: none;
 
     input,
@@ -96,7 +96,7 @@
   max-width: 24px;
   max-height: 24px;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: all .3s ease-in-out;
 
   &Prefix {
     margin-right: 8px;

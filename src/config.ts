@@ -17,7 +17,7 @@ const config = {
     list: ['oz', 'uz', 'ar', 'ru', 'en'],
   },
   list: {
-    perPage: 10,
+    limit: 10,
   },
 };
 

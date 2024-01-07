@@ -1,8 +1,8 @@
-import React, { lazy, useState } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-import { STATUS, ROLE } from '@/helpers/enums';
+import { ROLE } from '@/helpers/enums';
 
 import { useList } from '@/modules/user/hooks';
 import { IEntity } from '@/modules/user/types';
@@ -19,10 +19,9 @@ import Button from '@/components/Button';
 import PageHeader from '@/components/PageHeader';
 
 import FilterList from './components/FilterList';
+import ConfirmDelete from './components/ConfirmDelete';
 
 import cls from '@/assets/styles/base/page.module.scss';
-
-const ConfirmDelete = lazy(() => import('./components/ConfirmDelete'));
 
 const List: React.FC = () => {
   const { t } = useTranslation();
@@ -33,38 +32,7 @@ const List: React.FC = () => {
   const { items, meta, isFetched } = useList({
     params: {
       page: +query.get('page')!,
-      filter: [
-        {
-          key: 'firstName',
-          operation: '%_%',
-          value: query.get('first_name'),
-          type: 'STRING',
-        },
-        {
-          key: 'lastName',
-          operation: '%_%',
-          value: query.get('last_name'),
-          type: 'STRING',
-        },
-        {
-          key: 'username',
-          operation: '%_%',
-          value: query.get('username'),
-          type: 'STRING',
-        },
-        {
-          key: 'status',
-          operation: '=',
-          value: query.get('status'),
-          type: 'STRING',
-        },
-        {
-          key: 'status',
-          operation: '!=',
-          value: STATUS.DELETED,
-          type: 'STRING',
-        },
-      ],
+      search: query.get('search') || '',
     },
   });
 
@@ -108,7 +76,7 @@ const List: React.FC = () => {
             {
               title: '№',
               width: '60px',
-              render: (text, record, index) => (meta.current - 1) * meta.perPage + index + 1,
+              render: (text, record, index) => (meta.current - 1) * meta.size + index + 1,
             },
             {
               key: 'firstName',

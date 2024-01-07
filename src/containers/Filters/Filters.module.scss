@@ -6,7 +6,7 @@
   background: var(--background-white);
   border-radius: var(--border-radius-4);
   cursor: pointer;
-  transition: transform 0.2s ease-in-out;
+  transition: transform .3s ease-in-out;
   user-select: none;
   will-change: transform;
 
@@ -19,12 +19,12 @@
   }
 
   &:active {
-    transform: scale(0.9995);
+    transform: scale(.9995);
   }
 
   &--active {
     padding-right: 9px;
-    background-color: var(--status-blue);
+    background-color: var(--background-blue);
 
     .title,
     .value {
@@ -41,19 +41,19 @@
 }
 
 .title {
-  color: var(--content-secondary);
   font-size: 13px;
   line-height: 140%;
-  transition: all 0.1s ease-in-out;
+  color: var(--content-secondary);
+  transition: all .1s ease-in-out;
 }
 
 .value {
   margin-left: 4px;
-  color: var(--content-primary);
   font-weight: 600;
   font-size: 13px;
   line-height: 140%;
-  transition: all 0.1s ease-in-out;
+  color: var(--content-primary);
+  transition: all .1s ease-in-out;
 }
 
 .clear {
@@ -79,8 +79,8 @@
     min-height: 34px;
     padding: 7px 12px;
     cursor: pointer;
-    transition: all 0.15s ease-in-out;
     user-select: none;
+    transition: all .2s ease-in-out;
 
     &Active,
     &:hover {
@@ -92,10 +92,10 @@
     }
 
     &Title {
-      color: var(--content-primary);
       font-size: 13px;
       line-height: 140%;
-      transition: all 0.15s ease-in-out;
+      color: var(--content-primary);
+      transition: all .2s ease-in-out;
     }
 
     &Icon {

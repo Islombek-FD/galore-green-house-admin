@@ -9,14 +9,14 @@
   display: flex;
   align-items: center;
   padding: 8px 24px;
-  color: var(--content-primary);
   font-weight: 600;
   font-size: 13px;
   line-height: 140%;
+  color: var(--content-primary);
   border-radius: var(--border-radius-4);
   cursor: pointer;
-  transition: all 0.15s ease-in-out;
   user-select: none;
+  transition: all .3s ease-in-out;
 
   &Active {
     background-color: var(--background-blue);

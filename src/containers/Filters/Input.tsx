@@ -1,13 +1,12 @@
-import React, { lazy, useEffect, useId, useState, Suspense } from 'react';
+import React, { useEffect, useId, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Icon from '@/components/Icon';
 import Filter from '@/components/Filter';
+import InputBase from '@/components/Input';
 import Dropdown from '@/components/Dropdown';
 
 import cls from './Filters.module.scss';
-
-const InputBase = lazy(() => import('@/components/Input'));
 
 interface IProps {
   name: string;
@@ -39,27 +38,25 @@ const Input: React.FC<IProps> = ({ name, value, setValue }) => {
                     setValue(inputValue);
                   }}
                 >
-                  <Suspense fallback={''}>
-                    <InputBase
-                      id={id}
-                      value={inputValue}
-                      placeholder={t('what_to_search')}
-                      onChange={value => setInputValue(value)}
-                      iconSuffix={
-                        (value || inputValue) && (
-                          <Icon
-                            name='DismissCircle'
-                            onClick={() => {
-                              setInputValue('');
-                              setValue('');
-                            }}
-                          />
-                        )
-                      }
-                      autoFocus
-                      size='small'
-                    />
-                  </Suspense>
+                  <InputBase
+                    id={id}
+                    value={inputValue}
+                    placeholder={t('what_to_search')}
+                    onChange={value => setInputValue(value)}
+                    iconSuffix={
+                      (value || inputValue) && (
+                        <Icon
+                          name='DismissCircle'
+                          onClick={() => {
+                            setInputValue('');
+                            setValue('');
+                          }}
+                        />
+                      )
+                    }
+                    autoFocus
+                    size='small'
+                  />
                 </form>
               </div>
             ),

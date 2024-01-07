@@ -15,7 +15,7 @@ i18n.init({
   currentLanguage: storage.local.get(config.language.key),
   initialLanguage: config.language.initial,
   backend: {
-    loadPath: `${config.api.baseUrl}/reference/translate/ADMIN_CABINET/{{lng}}`,
+    loadPath: `${config.api.baseUrl}/admin/translate/ADMIN_CABINET/{{lng}}`,
   },
   onChange: language => storage.local.set('language', language),
 });
