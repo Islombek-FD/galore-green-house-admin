@@ -13,7 +13,7 @@ import Label from '@/components/Label';
 
 const Form: React.FC = () => {
   const { t } = useTranslation();
-  const [activeLanguage, setActiveLanguage] = useState('uz');
+  const [activeLanguage, setActiveLanguage] = useState('oz');
 
   return (
     <Grid.Row gutter={[24, 24]}>

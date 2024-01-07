@@ -26,6 +26,30 @@ const routes: IMenu[] = [
     roles: ['admin'],
   },
   {
+    key: '/aphorisms',
+    icon: 'Partner',
+    title: 'aphorisms',
+    roles: ['admin'],
+  },
+  {
+    key: '/rectors',
+    icon: 'Partner',
+    title: 'rectors',
+    roles: ['admin'],
+  },
+  {
+    key: '/employees',
+    icon: 'Partner',
+    title: 'employees',
+    roles: ['admin'],
+  },
+  {
+    key: '/media-categories',
+    icon: 'Video',
+    title: 'media_categories',
+    roles: ['admin'],
+  },
+  {
     key: '/partners',
     icon: 'Partner',
     title: 'partners',
@@ -35,6 +59,12 @@ const routes: IMenu[] = [
     key: '/faqs',
     icon: 'Partner',
     title: 'faqs',
+    roles: ['admin'],
+  },
+  {
+    key: '/departments',
+    icon: 'Partner',
+    title: 'departments',
     roles: ['admin'],
   },
   {

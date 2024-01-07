@@ -11,9 +11,9 @@ import Dropdown from '@/components/Dropdown';
 import cls from './Header.module.scss';
 
 interface Language {
-  key: 'uz' | 'oz' | 'ru';
+  key: 'oz' | 'uz' | 'ru' | 'en' | 'ar';
   name: string;
-  flag: 'Uzbek' | 'Russian';
+  flag: 'Uzbek' | 'Russian' | 'English';
 }
 
 interface Item {
@@ -37,19 +37,29 @@ const Header: React.FC<IProps> = ({ onToggle }) => {
   const languages: Language[] = useMemo(
     () => [
       {
-        key: 'uz',
-        name: 'uzbek_uz',
+        key: 'oz',
+        name: 'uzbek_oz',
         flag: 'Uzbek',
       },
       {
-        key: 'oz',
-        name: 'uzbek_oz',
+        key: 'uz',
+        name: 'uzbek_uz',
         flag: 'Uzbek',
       },
       {
         key: 'ru',
         name: 'russian',
         flag: 'Russian',
+      },
+      {
+        key: 'en',
+        name: 'uzbek_en',
+        flag: 'English',
+      },
+      {
+        key: 'ar',
+        name: 'uzbek_ar',
+        flag: 'Uzbek',
       },
     ],
     [],
@@ -101,6 +111,7 @@ const Header: React.FC<IProps> = ({ onToggle }) => {
             ],
           }}
           overlayClassName={cls.overlay}
+          placement='bottomRight'
           trigger={['click']}
         >
           <div className={cls.currentLanguage}>

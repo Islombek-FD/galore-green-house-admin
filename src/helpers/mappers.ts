@@ -16,7 +16,7 @@ export const getMeta = (item?): IMeta => ({
   totalPages: get(item, 'totalPages') || 0,
   totalItems: get(item, 'totalCount') || 0,
   current: get(item, 'page') ? get(item, 'page') : 0,
-  size: get(item, 'size') || 1,
+  size: get(item, 'size') || 0,
 });
 
 export const getFile = (item?): IFile => {
